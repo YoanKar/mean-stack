@@ -1,0 +1,91 @@
+<div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content white-text">
+          <div class="row">
+            <div class="col s5">
+              <form #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+                <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="studentService.selectedStudent._id">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input type="text" name="firstName" #name="ngModel" [(ngModel)]="studentService.selectedStudent.firstName" placeholder="Enter first name" required>
+                    <label>First Name :
+                      <label class="red-text">*</label>
+                    </label>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input type="text" name="lastName" #name="ngModel" [(ngModel)]="studentService.selectedStudent.lastName" placeholder="Enter last name" required>
+                      <label>Last Name :
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input type="text" name="uniqueNumber" #name="ngModel" [(ngModel)]="studentService.selectedStudent.uniqueNumber" placeholder="Enter unique number" required>
+                      <label>Unique Number :
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                </div> 
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input type="number" name="facNumber" #name="ngModel" [(ngModel)]="studentService.selectedStudent.facNumber" placeholder="Enter faculty number" required>
+                      <label>Faculty Number :
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                </div>   
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input type="date" name="birthDate" #name="ngModel" [(ngModel)]="studentService.selectedStudent.birthDate" placeholder="Enter birth date" required>
+                      <label>Birth Date :
+                        <label class="red-text">*</label>
+                      </label>
+                    </div>
+                </div>  
+                <div class="row">
+                  <div class="input-field col s12">
+                    <button class="btn btn-custom right" type="button" (click)="resetForm(studentForm)">Reset</button>
+                    <button class="btn btn-custom right" type="submit" [disabled]="!studentForm.valid">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="col s7">
+                <table class="responsive-table highlight">
+                    <thead>
+                      <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Unique Number</th>
+                        <th>Faculty Number</th>
+                        <th>Birth Date</th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tr *ngFor="let stu of studentService.students">
+                      <td>{{stu.firstName}}</td>
+                      <td>{{stu.lastName}}</td>
+                      <td>{{stu.uniqueNumber}}</td>
+                      <td>{{stu.facNumber}}</td>
+                      <td>{{stu.birthDate}}</td>
+                      <td>
+                          <a class="action-btn" (click)="onEdit(stu)">
+                            <i class="material-icons">edit</i>
+                          </a>
+                          <a class="action-btn" (click)="onDelete(stu._id,studentForm)">
+                            <i class="material-icons">delete</i>
+                          </a>
+                      </td>
+                    </tr>
+                  </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
